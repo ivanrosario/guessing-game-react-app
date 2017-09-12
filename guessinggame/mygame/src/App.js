@@ -15,8 +15,8 @@ class App extends Component {
     this.state = {
       userGuess:'',
       guessMade:[],
-      standardHigh:0,
-      experHigh:0,
+      standardHigh:2,
+      experHigh:1,
       CorrectNum:0,
       gamemode: ''
     }
