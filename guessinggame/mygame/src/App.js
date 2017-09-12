@@ -118,6 +118,8 @@ Restart(){
       standardHigh:0,
       experHigh:0,
       CorrectNum:0,
+      gamemode: ''
+
   });
 
 }
@@ -139,6 +141,7 @@ Restart(){
             guess={this.state.guessMade.length}
             Standard={this.state.standardHigh}
             Expert={this.state.experHigh}
+            level={this.state.gamemode}
          />
       </div>
     );
