@@ -59,7 +59,7 @@ class App extends Component {
   })
       //expert game mode check
 
-  if( CorrectNum === guess && gamemode ==='Expert' ){
+  if( CorrectNum == guess & gamemode =='Expert' ){
       alert('we Have a winner')
 
    if(expertHigh > oldHighScore ){  
@@ -79,7 +79,7 @@ class App extends Component {
 //=========END OF EXPERT CHECK =======
 
     //standard game mode check
-  if( CorrectNum === guess && gamemode === 'Standard'){
+  if( CorrectNum == guess & gamemode == 'Standard'){
         alert('we Have a winner')
 
     if(expertHigh > oldHighScore ){
