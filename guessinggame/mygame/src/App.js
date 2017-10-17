@@ -8,11 +8,8 @@ class App extends Component {
   constructor() {
     //super to use this inside of class if no super this = undefined
     super();
-    this.Expert = this.Expert.bind(this);
-    this.Standard = this.Standard.bind(this);
+
     this.UserInput = this.UserInput.bind(this);
-    this.HandleUserInput = this.HandleUserInput.bind(this);
-    this.Restart = this.Restart.bind(this);
 
     this.state = {
       userGuess:'',
@@ -23,16 +20,16 @@ class App extends Component {
       gamemode: ''
     }
   }
-  Standard =() =>{
-    var randomNum = Math.floor(Math.random() * 10);
+  standard =()=>{
+    let randomNum = Math.floor(Math.random() * 10);
 
     this.setState({
        CorrectNum: randomNum,
       gamemode: 'Standard'
     });
   }
-  Expert(){
-    var randomNum = Math.floor(Math.random() * 100);
+  expert =()=>{
+    let randomNum = Math.floor(Math.random() * 100);
 
     this.setState({
      CorrectNum: randomNum,
@@ -42,20 +39,22 @@ class App extends Component {
 
   UserInput(props){
     let guess = props.target.value;
+
     this.setState({
       userGuess: guess,
     });
   }
 //deals with hints pushing into new array and new highscore
-  HandleUserInput(){
-    var gamemode = this.state.gamemode
+  HandleUserInput =()=>{
+    let state = Object.assign({}, this.state);
+    let gamemode = state.gamemode
     //array
-    var totalGuess = this.state.guessMade;
-    var CorrectNum = this.state.CorrectNum
-    var guess = this.state.userGuess
-    var userHighScore = this.state.guessMade.length;
-    var oldHighScore = this.state.experHigh;
-    var oldStandardScore = this.state.standardHigh
+    let totalGuess = state.guessMade;
+    let CorrectNum = state.CorrectNum
+    let guess = state.userGuess
+    let userHighScore = state.guessMade.length;
+    let oldHighScore = state.experHigh;
+    let oldStandardScore = state.standardHigh
 
     totalGuess.push(this.state.userGuess);
     this.setState({
@@ -115,7 +114,7 @@ class App extends Component {
 
   }
 // goes back to inital state
-  Restart(){
+  restart =()=>{
     this.setState({
       userGuess:'',
       guessMade:[],
@@ -130,9 +129,9 @@ class App extends Component {
     return (
       <div className="App">
        <UserChoice 
-          Standard={this.Standard}
-          Expert={this.Expert}
-          Restart={this.Restart}
+          Standard={this.standard}
+          Expert={this.expert}
+          Restart={this.restart}
           level={this.state.gamemode}
         />
         <InputBox
