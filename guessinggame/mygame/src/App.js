@@ -45,7 +45,7 @@ class App extends Component {
     });
   }
 //deals with hints pushing into new array and new highscore
-  HandleUserInput =()=>{
+  handleUserInput =()=>{
     let state = Object.assign({}, this.state);
     let gameMode = state.gameMode
     //array
@@ -137,7 +137,7 @@ class App extends Component {
         />
         <InputBox
            userInput={this.userInput} 
-           HandleUserInput={this.HandleUserInput}
+           HandleUserInput={this.handleUserInput}
          />
          <Stats 
             guess={this.state.guessMade.length}

@@ -10,13 +10,13 @@ function InputBox(props) {
         <div className="Guess">
           <h2>Input Answer</h2>
           <input type="number"  name="Guess" onChange={props.userInput}  />
-          <button id="addBtn" onClick={props.HandleUserInput}>Add</button>
+          <button id="addBtn" onClick={props.handleUserInput}>Add</button>
         </div>
       </div>
     )
 } 
 InputBox.propTypes = {
-  HandleUserInput: PropTypes.func,
+  handleUserInput: PropTypes.func,
   userInput: PropTypes.func,
 
 };
