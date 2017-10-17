@@ -9,35 +9,35 @@ class App extends Component {
     //super to use this inside of class if no super this = undefined
     super();
 
-    this.UserInput = this.UserInput.bind(this);
+    this.userInput = this.userInput.bind(this);
 
     this.state = {
       userGuess:'',
       guessMade:[],
       standardHigh:0,
-      experHigh:0,
-      CorrectNum:0,
-      gamemode: ''
+      expertHigh:0,
+      correctNum:0,
+      gameMode: ''
     }
   }
   standard =()=>{
     let randomNum = Math.floor(Math.random() * 10);
 
     this.setState({
-       CorrectNum: randomNum,
-      gamemode: 'Standard'
+      correctNum: randomNum,
+      gameMode: 'Standard'
     });
   }
   expert =()=>{
     let randomNum = Math.floor(Math.random() * 100);
 
     this.setState({
-     CorrectNum: randomNum,
-     gamemode: 'Expert',
+      correctNum: randomNum,
+      gameMode: 'Expert',
    });
   }
 
-  UserInput(props){
+  userInput(props){
     let guess = props.target.value;
 
     this.setState({
@@ -47,27 +47,28 @@ class App extends Component {
 //deals with hints pushing into new array and new highscore
   HandleUserInput =()=>{
     let state = Object.assign({}, this.state);
-    let gamemode = state.gamemode
+    let gameMode = state.gameMode
     //array
     let totalGuess = state.guessMade;
-    let CorrectNum = state.CorrectNum
+    let correctNum = state.correctNum
     let guess = state.userGuess
     let userHighScore = state.guessMade.length;
-    let oldHighScore = state.experHigh;
+    let oldHighScore = state.expertHigh;
     let oldStandardScore = state.standardHigh
 
     totalGuess.push(this.state.userGuess);
+
     this.setState({
       guessMade:totalGuess,
     });
       //expert game mode check
 
-    if (CorrectNum == guess && gamemode == "Expert") {
+    if (correctNum == guess && gameMode == "Expert") {
       alert("we Have a winner");
 
       if (userHighScore > oldHighScore && oldHighScore === 0) {
         this.setState({
-          experHigh: userHighScore,
+          expertHigh: userHighScore,
           guessMade: []
         });
 
@@ -75,7 +76,7 @@ class App extends Component {
       }
       if (oldHighScore > userHighScore ) {
         this.setState({
-          experHigh: userHighScore
+          expertHigh: userHighScore
         });
 
         alert("SET NEW HIGSCORE");
@@ -85,7 +86,7 @@ class App extends Component {
 //=========END OF EXPERT CHECK =======
 
     //standard game mode check
-    if (CorrectNum == guess && gamemode == "Standard") {
+    if (correctNum == guess && gameMode == "Standard") {
       alert("we Have a winner");
 
       if (userHighScore > oldHighScore && oldHighScore === 0) {
@@ -104,9 +105,9 @@ class App extends Component {
       }
     }
 //checks if current user is close to
-    if (CorrectNum > guess) {
+    if (correctNum > guess) {
       alert("The answer is Greater");
-    } else if (CorrectNum < guess) {
+    } else if (correctNum < guess) {
       alert("The answer is Less ");
     }
 
@@ -119,9 +120,9 @@ class App extends Component {
       userGuess:'',
       guessMade:[],
       standardHigh:0,
-      experHigh:0,
-      CorrectNum:0,
-      gamemode: ''
+      expertHigh:0,
+      correctNum:0,
+      gameMode: ''
     });
   }
  
@@ -129,13 +130,13 @@ class App extends Component {
     return (
       <div className="App">
        <UserChoice 
-          Standard={this.standard}
-          Expert={this.expert}
-          Restart={this.restart}
+          standard={this.standard}
+          expert={this.expert}
+          restart={this.restart}
           level={this.state.gamemode}
         />
         <InputBox
-           UserInput={this.UserInput} 
+           userInput={this.userInput} 
            HandleUserInput={this.HandleUserInput}
          />
          <Stats 
