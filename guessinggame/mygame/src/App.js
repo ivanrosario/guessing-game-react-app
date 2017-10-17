@@ -133,7 +133,6 @@ class App extends Component {
           standard={this.standard}
           expert={this.expert}
           restart={this.restart}
-          level={this.state.gamemode}
         />
         <InputBox
            userInput={this.userInput} 
@@ -143,7 +142,7 @@ class App extends Component {
             guess={this.state.guessMade.length}
             Standard={this.state.standardHigh}
             Expert={this.state.experHigh}
-            level={this.state.gamemode}
+            level={this.state.gameMode}
          />
       </div>
     );
