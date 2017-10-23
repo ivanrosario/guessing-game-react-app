@@ -56,7 +56,7 @@ class App extends Component {
     let oldHighScore = state.expertHigh;
     let oldStandardScore = state.standardHigh
 
-    totalGuess.push(this.state.userGuess);
+    totalGuess.push(guess);
 
     this.setState({
       guessMade:totalGuess,
@@ -68,7 +68,7 @@ class App extends Component {
 
       if (userHighScore > oldHighScore && oldHighScore === 0) {
         this.setState({
-          expertHigh: userHighScore,
+          expertHigh: userHighScore + 1,
           guessMade: []
         });
 
@@ -76,7 +76,8 @@ class App extends Component {
       }
       if (oldHighScore > userHighScore ) {
         this.setState({
-          expertHigh: userHighScore
+          expertHigh: userHighScore + 1,
+          guessMade: []
         });
 
         alert("SET NEW HIGSCORE");
@@ -91,14 +92,14 @@ class App extends Component {
 
       if (userHighScore > oldHighScore && oldHighScore === 0) {
         this.setState({
-          standardHigh: userHighScore,
+          standardHigh: userHighScore + 1,
           guessMade: []
         });
         alert("NEW HIGSCORE");
       }
       if (oldStandardScore > userHighScore) {
         this.setState({
-          standardHigh: userHighScore,
+          standardHigh: userHighScore + 1,
           guessMade: []
         });
         alert("SET NEW HIGSCORE");
@@ -125,23 +126,23 @@ class App extends Component {
       gameMode: ''
     });
   }
- 
+
   render() {
     return (
       <div className="App">
-       <UserChoice 
+       <UserChoice
           standard={this.standard}
           expert={this.expert}
           restart={this.restart}
         />
         <InputBox
-           userInput={this.userInput} 
+           userInput={this.userInput}
            HandleUserInput={this.handleUserInput}
          />
-         <Stats 
+         <Stats
             guess={this.state.guessMade.length}
             Standard={this.state.standardHigh}
-            Expert={this.state.experHigh}
+            Expert={this.state.expertHigh}
             level={this.state.gameMode}
          />
       </div>

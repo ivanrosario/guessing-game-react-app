@@ -9,8 +9,8 @@ function Stats(props) {
          <h3>Level:{props.level}</h3>
           <ul>
             <li>Guess Attempt:{props.guess}</li>
-            <li> Standard Highscore:{props.standard}</li>
-            <li>Expert Highscore: {props.expert}</li>
+            <li> Standard Highscore:{props.Standard}</li>
+            <li>Expert Highscore: {props.Expert}</li>
           </ul>
       </div>
     )
