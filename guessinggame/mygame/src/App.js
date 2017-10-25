@@ -47,71 +47,79 @@ class App extends Component {
 //deals with hints pushing into new array and new highscore
   handleUserInput =()=>{
     let state = Object.assign({}, this.state);
-    let gameMode = state.gameMode
+    let gameMode = state.gameMode;
     //array
     let totalGuess = state.guessMade;
-    let correctNum = state.correctNum
-    let guess = state.userGuess
+    let correctNum = state.correctNum;
+    let guess = state.userGuess;
     let userHighScore = state.guessMade.length;
     let oldHighScore = state.expertHigh;
-    let oldStandardScore = state.standardHigh
+    let oldStandardScore = state.standardHigh;
 
-    totalGuess.push(guess);
+    if (guess == "" || gameMode == ""){
+      alert("enter a num or a gamemode");
+    }else{
+      totalGuess.push(guess);
 
-    this.setState({
-      guessMade:totalGuess,
-    });
-      //expert game mode check
+      this.setState({
+        guessMade:totalGuess,
+      });
+        //expert game mode check
 
-    if (correctNum == guess && gameMode == "Expert") {
-      alert("we Have a winner");
+      if (correctNum == guess && gameMode == "Expert") {
+        alert("we Have a winner");
 
-      if (userHighScore > oldHighScore && oldHighScore === 0) {
-        this.setState({
-          expertHigh: userHighScore + 1,
-          guessMade: []
-        });
+        if (userHighScore > oldHighScore && oldHighScore === 0) {
+          this.setState({
+            expertHigh: userHighScore + 1,
+            guessMade: []
+          });
 
-        alert("NEW HIGSCORE");
+          alert("NEW HIGSCORE");
+        }
+        if (oldHighScore > userHighScore ) {
+          this.setState({
+            expertHigh: userHighScore + 1,
+            guessMade: []
+          });
+          alert("SET NEW HIGSCORE");
+        }
       }
-      if (oldHighScore > userHighScore ) {
-        this.setState({
-          expertHigh: userHighScore + 1,
-          guessMade: []
-        });
 
-        alert("SET NEW HIGSCORE");
+      //=========END OF EXPERT CHECK =======
+
+      //standard game mode check
+      if (correctNum == guess && gameMode == "Standard") {
+        alert("we Have a winner");
+
+        if (userHighScore > oldHighScore && oldHighScore === 0) {
+          this.setState({
+            standardHigh: userHighScore + 1,
+            guessMade: []
+          });
+          alert("NEW HIGSCORE");
+        }
+        if (oldStandardScore > userHighScore) {
+          this.setState({
+            standardHigh: userHighScore + 1,
+            guessMade: []
+          });
+          alert("SET NEW HIGSCORE");
+        }
+      }
+      //checks if current user is close to
+      if (correctNum > guess) {
+        alert("The answer is Greater");
+        this.setState({
+          userGuess:'',
+        });
+      } else if (correctNum < guess) {
+        alert("The answer is Less ");
+          this.setState({
+          userGuess:'',
+        });
       }
     }
-
-//=========END OF EXPERT CHECK =======
-
-    //standard game mode check
-    if (correctNum == guess && gameMode == "Standard") {
-      alert("we Have a winner");
-
-      if (userHighScore > oldHighScore && oldHighScore === 0) {
-        this.setState({
-          standardHigh: userHighScore + 1,
-          guessMade: []
-        });
-        alert("NEW HIGSCORE");
-      }
-      if (oldStandardScore > userHighScore) {
-        this.setState({
-          standardHigh: userHighScore + 1,
-          guessMade: []
-        });
-        alert("SET NEW HIGSCORE");
-      }
-    }
-//checks if current user is close to
-    if (correctNum > guess) {
-      alert("The answer is Greater");
-    } else if (correctNum < guess) {
-      alert("The answer is Less ");
-    }
-
 //=========END OF STANDARD CHECK =======
 
   }

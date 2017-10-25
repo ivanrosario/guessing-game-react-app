@@ -1,5 +1,6 @@
 {
   "name": "mygame",
+"homepage": "http://irosario.road2hire/guessingGame",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
